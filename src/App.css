@@ -1,10 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.table-container {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grade-table th {
+  background-color: #2563eb;
+  color: white;
+  padding: 14px;
+  border: 1px solid #ddd;
+}
+
+.grade-table td {
+  border: 1px solid #ddd;
+  padding: 14px;
+  text-align: center;
+}
+
+.empty-row {
+  color: gray;
+  font-style: italic;
+  padding: 30px;
 }

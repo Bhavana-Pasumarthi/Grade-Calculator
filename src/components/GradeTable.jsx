@@ -1,3 +1,4 @@
+import SubjectRow from "./SubjectRow";
 function GradeTable({ subjects, updateSubject, deleteSubject }) {
   return (
     <div className="table-container">
@@ -30,35 +31,43 @@ function GradeTable({ subjects, updateSubject, deleteSubject }) {
 
                 <td>
                   <input
-                    type="text"
-                    value={subject.subject}
-                    onChange={(e) =>
-                      updateSubject(subject.id, "subject", e.target.value)
-                    }
-                    placeholder="Subject Name"
-                  />
+  type="text"
+  value={subject.subject}
+  onChange={(e) =>
+    updateSubject(subject.id, "subject", e.target.value)
+  }
+  placeholder="Subject Name"
+  disabled={subject.isLab}
+/>
                 </td>
 
                 <td>
                   <input
-                    type="number"
-                    value={subject.credits}
-                    onChange={(e) =>
-                      updateSubject(subject.id, "credits", e.target.value)
-                    }
-                  />
+  type="number"
+  value={subject.credits}
+  onChange={(e) =>
+    updateSubject(subject.id, "credits", e.target.value)
+  }
+  disabled={subject.isLab}
+/>
                 </td>
 
                 <td>
                   <select
-                    value={subject.type}
-                    onChange={(e) =>
-                      updateSubject(subject.id, "type", e.target.value)
-                    }
-                  >
-                    <option>Theory</option>
-                    <option>Lab + Theory</option>
-                  </select>
+  value={subject.type}
+  onChange={(e) =>
+    updateSubject(subject.id, "type", e.target.value)
+  }
+  disabled={subject.isLab}
+>
+  <option value={SUBJECT_TYPES.THEORY}>
+    {SUBJECT_TYPES.THEORY}
+  </option>
+
+  <option value={SUBJECT_TYPES.LAB_THEORY}>
+    {SUBJECT_TYPES.LAB_THEORY}
+  </option>
+</select>
                 </td>
 
                 <td>
@@ -68,53 +77,42 @@ function GradeTable({ subjects, updateSubject, deleteSubject }) {
     updateSubject(subject.id, "s1", e.target.value)
   }
 >
-  <option value="">Select</option>
-  <option value="O">O</option>
-  <option value="A+">A+</option>
-  <option value="A">A</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C">C</option>
-  <option value="F">F</option>
-  <option value="Ab">Ab</option>
+  {GRADES.map((grade) => (
+  <option key={grade} value={grade}>
+    {grade === "" ? "Select" : grade}
+  </option>
+))}
 </select>
                 </td>
 
                 <td>
                   <select
-  value={subject.s1}
+  value={subject.s2}
   onChange={(e) =>
     updateSubject(subject.id, "s2", e.target.value)
   }
 >
-  <option value="">Select</option>
-  <option value="O">O</option>
-  <option value="A+">A+</option>
-  <option value="A">A</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C">C</option>
-  <option value="F">F</option>
-  <option value="Ab">Ab</option>
+  
+  {GRADES.map((grade) => (
+  <option key={grade} value={grade}>
+    {grade === "" ? "Select" : grade}
+  </option>
+))}
 </select>
                 </td>
 
                 <td>
                   <select
-  value={subject.s1}
+  value={subject.le}
   onChange={(e) =>
     updateSubject(subject.id, "le", e.target.value)
   }
 >
-  <option value="">Select</option>
-  <option value="O">O</option>
-  <option value="A+">A+</option>
-  <option value="A">A</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C">C</option>
-  <option value="F">F</option>
-  <option value="Ab">Ab</option>
+  {GRADES.map((grade) => (
+  <option key={grade} value={grade}>
+    {grade === "" ? "Select" : grade}
+  </option>
+))}
 </select>
                 </td>
 
@@ -122,9 +120,10 @@ function GradeTable({ subjects, updateSubject, deleteSubject }) {
 
                 <td>
                   <button
-                    className="delete-btn"
-                    onClick={() => deleteSubject(subject.id)}
-                  >
+  className="delete-btn"
+  onClick={() => deleteSubject(subject.id)}
+  disabled={subject.isLab}
+>
                     🗑
                   </button>
                 </td>

@@ -170,3 +170,14 @@ body {
 .delete-btn:hover {
   background: #b91c1c;
 }
+.grade-table input:disabled,
+.grade-table select:disabled {
+  background-color: #f3f4f6;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
